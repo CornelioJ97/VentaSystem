@@ -1,0 +1,111 @@
+{% extends "base_in.html" %}
+
+{% block titulos %}
+	Proveedor - VentaSystem
+{% endblock  %}
+
+{% block content %}
+
+	<h1 class="titulo">Proveedor</h1>
+	<br>
+	<br>
+
+	<div>
+		
+		<ul class="nav nav-tabs" role="tablist">
+			<li role="presentation" class="active">
+				<a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Listar Proveedor</a>
+			</li>
+
+    		<li role="presentation">
+    			<a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Insertar Proveedor</a>
+    		</li>	
+		</ul>
+
+		<div class="tab-content">
+			<br>
+			<div role="tabpanel" class="tab-pane active" id="tab1">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>RTN</th>
+							<th>Contacto</th>
+							<th>Empresa</th>
+							<th>Correo Contacto</th>
+							<th>Dirección</th>
+							<th>Teléfono Contacto</th>
+							<th>Teléfono Empresa</th>
+							<th>Acción</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for proveedor in proveedores %}
+							<tr>
+								<td> {{ proveedor.rtnProveedor }} </td>
+								<td> {{ proveedor.nombreContacto }} </td>
+								<td> {{ proveedor.nombreEmpresa }} </td>
+								<td> {{ proveedor.correoContacto }} </td>
+								<td> {{ proveedor.direccion }} </td>
+								<td> {{ proveedor.telefonoContacto }} </td>
+								<td> {{ proveedor.telefonoEmpresa }} </td>
+								<td>
+									<a href="" class="btn btn-sm btn-danger">Eliminar</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+
+
+    		<div role="tabpanel" class="tab-pane" id="tab2">
+    			<br>
+    			<form action=" {% url 'insertar_proveedor' %} " method="post">
+					{% csrf_token %}
+					<p>
+						<label for="rtnProveedor">RTN</label>
+						<input autofocus required type="text" class="form-control" id="rtnProveedor" name="rtnProveedor">
+					</p>
+
+					<p>
+						<label for="nombreContacto">Nombre de contacto</label>
+						<input autofocus required type="text" class="form-control" id="nombreContacto" name="nombreContacto">
+					</p>
+
+					<p>
+						<label for="nombreEmpresa">Nombre de empresa</label>
+						<input autofocus required type="text" class="form-control" id="nombreEmpresa" name="nombreEmpresa">
+					</p>
+
+					<p>
+						<label for="correo">Correo contacto</label>
+						<input autofocus required type="email" class="form-control" id="correo" name="correo">
+					</p>
+
+					<p>
+						<label for="direccion">Dirección</label>
+						<input autofocus required type="text" class="form-control" id="direccion" name="direccion">
+					</p>
+
+					<p>
+						<label for="telefonoContacto">Teléfono contacto</label>
+						<input autofocus required type="text" class="form-control" id="telefonoContacto" name="telefonoContacto">
+					</p>
+
+					<p>
+						<label for="telefonoEmpresa">Teléfono empresa</label>
+						<input autofocus required type="text" class="form-control" id="telefonoEmpresa" name="telefonoEmpresa">
+					</p>
+					<br>
+					<button type="submit" class="btn btn-success" aria-label="Left Align">
+						Insertar <span class="glyphicon glyphicon-plus "></span>
+					</button>
+
+				</form>
+    			
+    		</div>
+		</div>
+
+	</div>
+	
+{% endblock  %}

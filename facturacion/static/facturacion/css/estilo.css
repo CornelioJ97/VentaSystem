@@ -1,0 +1,17 @@
+body{
+
+	background: white url("../img/fondo.jpg");
+    background-repeat: no-repeat;
+    background-color: #808080;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    color: white; 
+}
+
+.titulo{
+	text-align: center;	
+}
+
+#nombre{
+	width: 40%;
+}
