@@ -6,6 +6,8 @@ body{
     background-size: 100% 100%;
     background-attachment: fixed;
     color: white; 
+    
+  	padding-top: 70px;
 }
 
 .titulo{
@@ -13,5 +15,9 @@ body{
 }
 
 #nombre{
+	width: 40%;
+}
+
+.form-control{
 	width: 40%;
 }

@@ -6,66 +6,35 @@
 
 {% block content %}
 	<h1 class="titulo">Categoría</h1>
-		<br>
-		<br>
+	<a href="{% url 'insertar_categoria' %}" class="btn btn-success">
+		Nueva Categoría <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+	</a>
+	<br>
+	<br>
 
-		<div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Código Categoría</th>
+				<th>Categoría</th>
+				<th>Acción</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for categoria in categorias %}
+				<tr>
+					<td> {{ categoria.id }} </td>
+					<td> {{ categoria.nombre }} </td>
+					<td>
+						<a href="{% url 'actualizar_categoria' categoria.id %}" class="btn btn-sm btn-primary">Actualizar</a>
+						<a href="{% url 'eliminar_categoria' categoria.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
 		
-			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active">
-					<a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Listar Categoría</a>
-				</li>
-
-	    		<li role="presentation">
-	    			<a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Insertar Categoría</a>
-	    		</li>	
-			</ul>
-
-			<div class="tab-content">
-				<br>
-				<div role="tabpanel" class="tab-pane active" id="tab1">
-					<table class="table">
-						<thead>
-							<tr>
-								<th>Código Categoría</th>
-								<th>Categoría</th>
-								<th>Acción</th>
-							</tr>
-						</thead>
-						<tbody>
-							{% for categoria in categorias %}
-								<tr>
-									<td> {{ categoria.id }} </td>
-									<td> {{ categoria.nombre }} </td>
-									<td>
-										<a href="{% url 'eliminar_categoria' categoria.id %}" class="btn btn-sm btn-danger">Eliminar</a>
-									</td>
-								</tr>
-							{% endfor %}
-						</tbody>
-					</table>
-				</div>
-
-
-	    		<div role="tabpanel" class="tab-pane" id="tab2">
-	    			<br>
-	    			<form action=" {% url 'insertar_categoria' %} " method="post">
-						{% csrf_token %}
-						<p>
-							<label for="nombre">Nombre de categoría</label>
-							<input autofocus required type="text" class="form-control" id="nombre" name="nombre">
-						</p>
-						<br>
-						<button type="submit" class="btn btn-success" aria-label="Left Align">
-							Insertar <span class="glyphicon glyphicon-plus "></span>
-						</button>
-
-					</form>
-	    			
-	    		</div>
-			</div>
-
-		</div>
 
 
 {% endblock  %}

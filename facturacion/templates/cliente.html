@@ -1,0 +1,47 @@
+{% extends "base_in.html" %}
+
+{% block titulos %}
+	Cliente - VentaSystem
+{% endblock  %}
+
+{% block content %}
+
+	<h1 class="titulo">Cliente</h1>
+	<a href="{% url 'insertar_cliente' %}" class="btn btn-success">
+		Nuevo Cliente <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+	</a>
+	<br>
+	<br>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>RTN</th>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Correo Electrónico</th>
+				<th>Dirección</th>
+				<th>Teléfono </th>
+				<th>Acción</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for cliente in clientes %}
+				<tr>
+					<td> {{ cliente.rtn }} </td>
+					<td> {{ cliente.nombre}} </td>
+					<td> {{ cliente.apellido }} </td>
+					<td> {{ cliente.correo }} </td>
+					<td> {{ cliente.direccion }} </td>
+					<td> {{ cliente.telefono }} </td>
+					<td>
+						<a href="{% url 'actualizar_cliente' cliente.id %}" class="btn btn-sm btn-primary">Actualizar</a>
+						<a href="{% url 'eliminar_cliente' cliente.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	
+{% endblock  %}
